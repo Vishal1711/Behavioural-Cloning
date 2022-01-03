@@ -24,13 +24,15 @@ I have collected a dataset by driving on both direction around track 1. Driving 
 
 To filter front bias in steering data limit put at 400.
 
-`num_bins =25
+```
+num_bins =25
 samples_per_bin = 400
 hist, bins = np.histogram(data['steering'], num_bins)
 print(bins)
 center = (bins[:-1]+ bins[1:]) * 0.5
 plt.bar(center, hist, width=0.05)
-plt.plot((np.min(data['steering']), np.max(data['steering'])), (samples_p_bin, samples_per_bin))`
+plt.plot((np.min(data['steering']), np.max(data['steering'])), (samples_p_bin, samples_per_bin))
+```
 
 
 ![image](https://user-images.githubusercontent.com/79803663/147972871-52742f59-f94e-486c-bd52-ec409f7a6467.png)  ![image](https://user-images.githubusercontent.com/79803663/147972962-d83770f2-74d6-4e38-ad2d-f1b1a0bf1240.png)
@@ -67,24 +69,37 @@ Image Conversion in YUV Format-
 
 I started with the model described in [Nvidia paper](https://arxiv.org/abs/1604.07316) and kept simplifying and optimising it while making sure it performs well on both tracks.
 
-`def nvidia_model():
+<img width="247" alt="image" src="https://user-images.githubusercontent.com/79803663/147975361-93ec066e-f6d8-406f-b9f7-58f2c0e2e875.png">
+
+This model can be very briefly encoded with Keras.
+
+```
+def nvidia_model():
   model = Sequential()
   model.add(Convolution2D(24, kernel_size=(5,5), strides=(2,2), input_shape=(66,200,3), activation='elu'))
   model.add(Convolution2D(36, kernel_size=(5, 5), strides=(2,2), activation='relu'))
   model.add(Convolution2D(48, kernel_size=(5, 5), strides=(2,2), activation='relu'))
   model.add(Convolution2D(64, kernel_size=(3, 3), activation='relu'))
   model.add(Convolution2D(64, kernel_size=(3, 3), activation='relu'))
-
   model.add(Flatten())
   model.add(Dense(100, activation='relu'))
-
   model.add(Dense(50, activation='relu'))
   model.add(Dense(10, activation='relu'))
   model.add(Dense(1))
   optimizer = Adam(learning_rate=0.001)
   model.compile(loss='mse', optimizer=optimizer)
-  return model`
+  return model
+```
 
+## Result
+
+The model was trained using arrow keys in the simulator. Therefore, the performance is not smooth as expected. Still, the car manages to drive just fine on both tracks. This is what driving looks like on track 2 (previously unseen).
+
+Track 1:
+
+
+
+Track 2:
 
 
 
