@@ -107,4 +107,4 @@ https://user-images.githubusercontent.com/79803663/147976999-50fd4141-d1ca-42c6-
 
 
 
-  
+Clearly this is a very basic example of end-to-end learning for self-driving cars, nevertheless it should give a rough idea of what these models are capable of, even considering all limitations of training and validating solely on a virtual driving simulator.
