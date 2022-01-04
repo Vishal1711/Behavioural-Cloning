@@ -93,10 +93,12 @@ def nvidia_model():
 
 ## Result
 
-The model was trained using arrow keys in the simulator. Therefore, the performance is not smooth as expected. Still, the car manages to drive just fine on both tracks. This is what driving looks like on track 2 (previously unseen).
+The model was trained using arrow keys in the simulator on track 1. Therefore, the performance is not smooth as expected. Still, the car manages to drive just fine on both tracks. This is what driving looks like on track 2 (previously unseen).
 
 Track 1:
 
+
+https://user-images.githubusercontent.com/79803663/147994324-e85d8eb6-2fc4-4665-ba5c-07bb950edc1c.mp4
 
 
 Track 2:
